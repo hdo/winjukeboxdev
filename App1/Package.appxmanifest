@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="a3dacc6b-96ae-4c75-9c90-8c50778552b3" Publisher="CN=mrbean" Version="1.0.0.7" />
+  <Properties>
+    <DisplayName>App1</DisplayName>
+    <PublisherDisplayName>mrbean</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="JukeboxDev.App">
+      <m2:VisualElements DisplayName="JukeboxDev" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="Jukebox for Kids Devlopment Version" ForegroundText="light" BackgroundColor="#464646">
+        <m2:SplashScreen Image="Assets\SplashScreen.png" />
+        <m2:InitialRotationPreference>
+          <m2:Rotation Preference="landscape" />
+        </m2:InitialRotationPreference>
+      </m2:VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="mp3audio">
+            <DisplayName>MP3</DisplayName>
+            <InfoTip>MP3</InfoTip>
+            <EditFlags OpenIsSafe="true" />
+            <SupportedFileTypes>
+              <FileType ContentType="audio/mpeg">.mp3</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="JukeboxDev.App">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <Capability Name="removableStorage" />
+  </Capabilities>
+</Package>

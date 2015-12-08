@@ -1,0 +1,619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE821C60-F61D-45C6-AFEF-77C27C6D92ED}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App1</RootNamespace>
+    <AssemblyName>App1</AssemblyName>
+    <DefaultLanguage>de-DE</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>App1_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupedItemsPage.xaml.cs">
+      <DependentUpon>GroupedItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupDetailPage.xaml.cs">
+      <DependentUpon>GroupDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDetailPage.xaml.cs">
+      <DependentUpon>ItemDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataModel\SampleDataSource.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Common\ReadMe.txt" />
+    <None Include="App1_TemporaryKey.pfx" />
+    <Content Include="Assets\covers\0069156f244f00acd7928317d28b0f5f.png" />
+    <Content Include="Assets\covers\01cc84452c30921a303a7e20b7e10c38.png" />
+    <Content Include="Assets\covers\02c461fd7807c61473a1b977a7f363ed.png" />
+    <Content Include="Assets\covers\02e79637a7f44622bbe00ab9c3cc8980.png" />
+    <Content Include="Assets\covers\047f28d4d9f78c28efad78ae8ba6fd10.png" />
+    <Content Include="Assets\covers\0492bf28d3d4533e1ad2c137beea2cd4.png" />
+    <Content Include="Assets\covers\05c2b11db849cb9301915bafa57013a3.png" />
+    <Content Include="Assets\covers\0640df98a586a431bd181bd59411fee7.png" />
+    <Content Include="Assets\covers\065bdcdde3f1e863e850edaceedd09f5.png" />
+    <Content Include="Assets\covers\07022aba2862355f33ca8b55f5a243d6.png" />
+    <Content Include="Assets\covers\07ccb6b7b1bed749ec20e74c219f9c93.png" />
+    <Content Include="Assets\covers\07dc1d6ef4522b7c6413d7111dcaa62c.png" />
+    <Content Include="Assets\covers\089e12b5272c78b869a22ef28e637c8b.png" />
+    <Content Include="Assets\covers\08c81c846fad280ea7dc3ad16b880b02.png" />
+    <Content Include="Assets\covers\08d1c3928ff6f1b16819f0e546978aae.png" />
+    <Content Include="Assets\covers\09517ee599782529f051b31ddd7e93e5.png" />
+    <Content Include="Assets\covers\095cbac2d8ad809b5d1bca501ecaac9a.png" />
+    <Content Include="Assets\covers\0b820141709b68781e8852ac4f61cd08.png" />
+    <Content Include="Assets\covers\0c56fac920f4f914ea370b68ddecda86.png" />
+    <Content Include="Assets\covers\0cdc39d7220a4a623eca491d6f2010ef.png" />
+    <Content Include="Assets\covers\0da1714814f3eff1d306ba9df089ce78.png" />
+    <Content Include="Assets\covers\0ebcd641002eeb3fb7b2d9285619b791.png" />
+    <Content Include="Assets\covers\0fda3b57b958c0bedd587a1358efa3a0.png" />
+    <Content Include="Assets\covers\0fda721fe30836cd058951bc7b435147.png" />
+    <Content Include="Assets\covers\10745974767d507052abea46e5605fd2.png" />
+    <Content Include="Assets\covers\1164e2643c61037ea3582032df48ab82.png" />
+    <Content Include="Assets\covers\127545682dfaf90dfccd125f040747ff.png" />
+    <Content Include="Assets\covers\13624becd52b3059122ffcaac8d65b70.png" />
+    <Content Include="Assets\covers\13b21b5819799e2fdbdaaac9601bf852.png" />
+    <Content Include="Assets\covers\13b4c9cef3ccf0757df10b4e633c86f9.png" />
+    <Content Include="Assets\covers\13b92af36e33393a0bac891dfde0c5db.png" />
+    <Content Include="Assets\covers\148372fa8249369982e7d7f7c746f24f.png" />
+    <Content Include="Assets\covers\148f9955ae39e08a67c88191cebd514b.png" />
+    <Content Include="Assets\covers\14b32499e2cc296483eb2a1906cd424c.png" />
+    <Content Include="Assets\covers\1577cb7f73ae8672bf0ff3c609bb9e1f.png" />
+    <Content Include="Assets\covers\16426f13e1d0c30fc50f04db58cc19bf.png" />
+    <Content Include="Assets\covers\164ccc940504784651b0e4d9741d0f84.png" />
+    <Content Include="Assets\covers\16fbb2da80f9cb5fbad2a7ed1b6557bf.png" />
+    <Content Include="Assets\covers\17597c69d4c7e1094dd2fa39e7012cd7.png" />
+    <Content Include="Assets\covers\17dcca849dc627181ce3474e4ef2d665.png" />
+    <Content Include="Assets\covers\181c1dafae58544f67da00e36ccfda9b.png" />
+    <Content Include="Assets\covers\182de8c0542d227b16756967b3450f16.png" />
+    <Content Include="Assets\covers\1afcc0a0414ca134f544bd4a115c9167.png" />
+    <Content Include="Assets\covers\1bd05bff8fb4618591932b85169561bf.png" />
+    <Content Include="Assets\covers\1c1b28630742266fc7b638516a3434b0.png" />
+    <Content Include="Assets\covers\1c21f0db5f6a33e08ab971a21548c7d6.png" />
+    <Content Include="Assets\covers\1ca4ccaf088d7021b1c0b24a07ef10bc.png" />
+    <Content Include="Assets\covers\1cc7f719c2ea61b8ae3eb9ce11f6ab82.png" />
+    <Content Include="Assets\covers\1d02d5a778a237b781313324c2a19faa.png" />
+    <Content Include="Assets\covers\1d8f3c31214f80b94be2c4e6197c7f12.png" />
+    <Content Include="Assets\covers\1dbd97d8112530eb2c466ace4e4487bb.png" />
+    <Content Include="Assets\covers\1ef531bf75267fe70284cc1d1731aaef.png" />
+    <Content Include="Assets\covers\1f2a2ee0d500b3d90753f1a37a44856a.png" />
+    <Content Include="Assets\covers\1fc54cd8a6725be3e3262c1f979a8735.png" />
+    <Content Include="Assets\covers\20a647f0d3fa1d43163128f1b8959242.png" />
+    <Content Include="Assets\covers\21c71929bacd9841a3858ae11c3b5e8f.png" />
+    <Content Include="Assets\covers\21e6fd7ec4ec4996f455e132890ef45c.png" />
+    <Content Include="Assets\covers\223f976739279ddee9506058a808d707.png" />
+    <Content Include="Assets\covers\2263a7b5f8bd86de432e211ddf271d16.png" />
+    <Content Include="Assets\covers\24a39d047c2c9acb0e783ba57b2131e0.png" />
+    <Content Include="Assets\covers\24bf54e5cf4187ee4b3dc4b64ad25dbe.png" />
+    <Content Include="Assets\covers\272b1830db0246680a569bebeba1c009.png" />
+    <Content Include="Assets\covers\277b5123adc3313e74c9cc404b453cb0.png" />
+    <Content Include="Assets\covers\27a4ea0f825e1a394a0139fcfa55c645.png" />
+    <Content Include="Assets\covers\27c0d3b9b29b2d454d50e528081789c6.png" />
+    <Content Include="Assets\covers\2803befe3cdca4dea5f5cbda0fdf1621.png" />
+    <Content Include="Assets\covers\283cf4170a13da6b0cdb60cb5d0c411c.png" />
+    <Content Include="Assets\covers\290cad6b7361eec43f3883fde73fc754.png" />
+    <Content Include="Assets\covers\29382ceb3565f362adda6d0eaebcd57f.png" />
+    <Content Include="Assets\covers\2a5ff94210645c4314c9842cd76f639c.png" />
+    <Content Include="Assets\covers\2aa3e0482cdb6a449eeada4348b5c131.png" />
+    <Content Include="Assets\covers\2ade4252fd6a8e49b28f4e6bc5dbf31f.png" />
+    <Content Include="Assets\covers\2c3fef96af1afd3f70909df8658d842f.png" />
+    <Content Include="Assets\covers\2d2e61b9017da0258769ea3f00d8e5d3.png" />
+    <Content Include="Assets\covers\2dda495bace6e94c5e57d7f03004b6d2.png" />
+    <Content Include="Assets\covers\2e4c100f9be2a6a5d3ee23bc63eb63db.png" />
+    <Content Include="Assets\covers\2ee92f07d0d51f619584edee60678675.png" />
+    <Content Include="Assets\covers\3088210722f57f0e5383eccf2197eb03.png" />
+    <Content Include="Assets\covers\3092004e63df483727fd4a689dc19bed.png" />
+    <Content Include="Assets\covers\30a0a6ba935f525cf39aa6be93dca872.png" />
+    <Content Include="Assets\covers\310ea3353bf01d4e421b905ea1301bd8.png" />
+    <Content Include="Assets\covers\31cbb286badc6d0c6b128f183e83c9e4.png" />
+    <Content Include="Assets\covers\3265f5bf69d5f2090d6edcda514b6206.png" />
+    <Content Include="Assets\covers\3272859c4a827046b931284976826ce9.png" />
+    <Content Include="Assets\covers\32b39d92395b34a6069ca5f7856924af.png" />
+    <Content Include="Assets\covers\32fcbafde1cc7f503f16ad23041b46fb.png" />
+    <Content Include="Assets\covers\33fa129b10759e32ec43be82b176f3d8.png" />
+    <Content Include="Assets\covers\3494f49ab2f6abc38844d9bba320e624.png" />
+    <Content Include="Assets\covers\35257e1a31d79aefacc6a14596e53004.png" />
+    <Content Include="Assets\covers\35e84921daef713f380133e64671443a.png" />
+    <Content Include="Assets\covers\376448ce5ebbf283c4ac84ca34c9c4e6.png" />
+    <Content Include="Assets\covers\39287fb5f33ced9d9dd7611f316e062f.png" />
+    <Content Include="Assets\covers\3c0e86e9f44598856ff6f9e08c4293e5.png" />
+    <Content Include="Assets\covers\3c1d9b42eaee8a1e84d1572f344b3b29.png" />
+    <Content Include="Assets\covers\3cf505eedd22b41f0860618d8836bd21.png" />
+    <Content Include="Assets\covers\3d7d659cf809b82a1313a7973497d728.png" />
+    <Content Include="Assets\covers\3ee5393a9574f8c04e0df1410bdfef34.png" />
+    <Content Include="Assets\covers\40cca721328afba79685781e1bf14abc.png" />
+    <Content Include="Assets\covers\41fab07d50ce4ea989145aa65d622d53.png" />
+    <Content Include="Assets\covers\4204cef0e0cc75de55611617b150cef2.png" />
+    <Content Include="Assets\covers\4247441a31af07431475ec4568cca583.png" />
+    <Content Include="Assets\covers\42d4b242ff7b0e4b24dfd9a4b002c32c.png" />
+    <Content Include="Assets\covers\42f59d67ad16cfdb66107612d044b8ad.png" />
+    <Content Include="Assets\covers\432536a3e8b09156fcc84b05df4979a3.png" />
+    <Content Include="Assets\covers\4380a4dc321fe0f9672e2c5963959ff6.png" />
+    <Content Include="Assets\covers\439f3b7144ac1c8ff23c0a3b3bd7a0d7.png" />
+    <Content Include="Assets\covers\43d873ab996b90c67f9c3416e610c7c2.png" />
+    <Content Include="Assets\covers\43fb93687ccb626ccffa7e5337a6d9ad.png" />
+    <Content Include="Assets\covers\440463f3fe0a6262cce2d6bb2c1c98e7.png" />
+    <Content Include="Assets\covers\45398c3a72b5b361410a0564cc503aa3.png" />
+    <Content Include="Assets\covers\4568c99e07cda61f0c66ad81a7f31d41.png" />
+    <Content Include="Assets\covers\46d460870954ef7a9a88a76c95947e2d.png" />
+    <Content Include="Assets\covers\47b1d7a16ac32d4d5b7da23171537ab6.png" />
+    <Content Include="Assets\covers\480ba649242b4e373c437d6a88669ad2.png" />
+    <Content Include="Assets\covers\4829973e541a0f8affc94d383328c2b4.png" />
+    <Content Include="Assets\covers\487530bf19932c31bf618b19f1b075ae.png" />
+    <Content Include="Assets\covers\48c14038c82de75fd6c5033938f3bf62.png" />
+    <Content Include="Assets\covers\49308387a03ba48dc8693f4af1415241.png" />
+    <Content Include="Assets\covers\49b56ae29290947d43560cb7cca5c967.png" />
+    <Content Include="Assets\covers\49e0f674a579b47807c9f3ef77a72553.png" />
+    <Content Include="Assets\covers\4ac8bd399b44228817e25c949a455da5.png" />
+    <Content Include="Assets\covers\4afbfdcf3ba438454ec769f020b82697.png" />
+    <Content Include="Assets\covers\4c3222de9aeeef7930660bea2514cf9d.png" />
+    <Content Include="Assets\covers\4c5c82f749eea9b5c6bf0bb58af8541a.png" />
+    <Content Include="Assets\covers\4ceeb960d3c3ae00f04d11e31e33b3c7.png" />
+    <Content Include="Assets\covers\4de55ad843b771d06206102327654dab.png" />
+    <Content Include="Assets\covers\4ece36bf3652747ab04e3aa9fe54199d.png" />
+    <Content Include="Assets\covers\4f71edc2f7b0115e805901c510262653.png" />
+    <Content Include="Assets\covers\4f8b873ed595e9a83ab0a4e5bc3ed980.png" />
+    <Content Include="Assets\covers\4fa5b6eb53e1a7a348d0acb37c7e7047.png" />
+    <Content Include="Assets\covers\51fd397261465169770859152c6250f4.png" />
+    <Content Include="Assets\covers\520c7ced2fe29f30ac265ce00a724138.png" />
+    <Content Include="Assets\covers\5229e82442f44be9f36da40c71fba38a.png" />
+    <Content Include="Assets\covers\5288cc726c6e79352a0a4b8edd831f0b.png" />
+    <Content Include="Assets\covers\52ca6d633eef43a14f8dd4539805fcd5.png" />
+    <Content Include="Assets\covers\5345c37357e564bf9f7cff0ce67fe443.png" />
+    <Content Include="Assets\covers\5468d977acaccd3fa383879a0921d6d5.png" />
+    <Content Include="Assets\covers\552838cc8caa670cdd1bc0f9a2d5b64e.png" />
+    <Content Include="Assets\covers\5558b65d9971d25f91af5307d62af467.png" />
+    <Content Include="Assets\covers\579b5a6edd2109f76e32f2f20ebbc72d.png" />
+    <Content Include="Assets\covers\57e539e36289126e66750c28d4b5b94b.png" />
+    <Content Include="Assets\covers\58a237e2802c56c540df190314525b11.png" />
+    <Content Include="Assets\covers\58b6b2426b3989301a9a57eda54a43dc.png" />
+    <Content Include="Assets\covers\5954c98d3c1b87bdb0b5f4b36307ab7b.png" />
+    <Content Include="Assets\covers\59bb68b4f46f441cfd0011cf7e73159c.png" />
+    <Content Include="Assets\covers\59bbf9d4899dd18cd23fba8f6b386986.png" />
+    <Content Include="Assets\covers\5a01f6db3b44c464aee94c4d2fadfb3d.png" />
+    <Content Include="Assets\covers\5b5116e86326d811d74fd1d305ff8b56.png" />
+    <Content Include="Assets\covers\5b6a504e3be38aa1cb6148f06a0ecc3f.png" />
+    <Content Include="Assets\covers\5b8a6da252add8d2a9c09b98ea32565d.png" />
+    <Content Include="Assets\covers\5c119512040b152d00758deed2f25ce9.png" />
+    <Content Include="Assets\covers\5c39e0c7a2936fce74d10d9d9636de21.png" />
+    <Content Include="Assets\covers\5c50f6fa701883313d07e3f5f270cb8b.png" />
+    <Content Include="Assets\covers\5cd2721d1f2a1028f36d8f6552beaa46.png" />
+    <Content Include="Assets\covers\5cf89495074990372abb982450ebeba2.png" />
+    <Content Include="Assets\covers\5e48150bbe8ff93276803c45307a536d.png" />
+    <Content Include="Assets\covers\5ee78606c5bf830430ca1b6bb748b6ac.png" />
+    <Content Include="Assets\covers\6107abc2ac8ff8e368fcc3d4229b69d5.png" />
+    <Content Include="Assets\covers\611b2a3fbeee2d34fe26eb912c54f2bf.png" />
+    <Content Include="Assets\covers\615470fd99655efa90a6933c1797ff88.png" />
+    <Content Include="Assets\covers\61683a7c4b606760e15ec7b4b8d593e7.png" />
+    <Content Include="Assets\covers\62a84aa7a5f18287e2e84651f2f17f4d.png" />
+    <Content Include="Assets\covers\62fdffe1b5a08a0c377818af6ab56013.png" />
+    <Content Include="Assets\covers\648f13340a22b688c30f3a9bb10999a6.png" />
+    <Content Include="Assets\covers\64ad0e954a5f8ed807173169b24208cc.png" />
+    <Content Include="Assets\covers\65c9dc9b9b66106278a45a5271c9e5ca.png" />
+    <Content Include="Assets\covers\66140b6ea512c5d7218e7a6896045259.png" />
+    <Content Include="Assets\covers\6710a4a8b6122aeca94229c728143b1e.png" />
+    <Content Include="Assets\covers\673bdfca6ae88154803f0c53fd28714e.png" />
+    <Content Include="Assets\covers\6807a65b8391c91567da96ae168ead18.png" />
+    <Content Include="Assets\covers\68afd9bc831304b80c4fbef15c65c500.png" />
+    <Content Include="Assets\covers\68d4f35b55173f9089f5189170da7138.png" />
+    <Content Include="Assets\covers\6a75d019eb870a296be113025fdba523.png" />
+    <Content Include="Assets\covers\6aa7595f4a596a76fdf486f189d6241a.png" />
+    <Content Include="Assets\covers\6b2be9fb788822fc222356ef965a57d8.png" />
+    <Content Include="Assets\covers\6b5b70bb446aad5e324214e0ed8bbdbb.png" />
+    <Content Include="Assets\covers\6b7b4b03251378546b26b012eb69d8b4.png" />
+    <Content Include="Assets\covers\6c1e3d4d2b4c5bef192c48ea5f4baac9.png" />
+    <Content Include="Assets\covers\6c3ee9876d1926eb279a9d0c77b8c54b.png" />
+    <Content Include="Assets\covers\6c59b3334cd5f423bfb6e5c968e3d3a7.png" />
+    <Content Include="Assets\covers\6c69e57bf1abc51b6eb0344a997784b2.png" />
+    <Content Include="Assets\covers\6c7534052c18d9b730fb953d76477001.png" />
+    <Content Include="Assets\covers\6d13692a6dcf1daa06d1cc26b9520637.png" />
+    <Content Include="Assets\covers\6d215a4bb621678e3c584aeaaa41a4c7.png" />
+    <Content Include="Assets\covers\6d65970b1afd7e014095497a8dded10f.png" />
+    <Content Include="Assets\covers\708ff2d4c655125f23a1ea22485c2baa.png" />
+    <Content Include="Assets\covers\70d817e012ad445106e838d1d3eedc1a.png" />
+    <Content Include="Assets\covers\7142ea9e12a18d89daa0fe96764e6087.png" />
+    <Content Include="Assets\covers\716e99a8334c8363e8f6e0ce9f729c45.png" />
+    <Content Include="Assets\covers\71cabfc2d40410b8b96e49b257869e1b.png" />
+    <Content Include="Assets\covers\729fdee8a08fb99ad77201b3dbf6b152.png" />
+    <Content Include="Assets\covers\72bfe4e17bf551745cb689fc8e1f6504.png" />
+    <Content Include="Assets\covers\747ad192a6cda7db2cecd615601eaeef.png" />
+    <Content Include="Assets\covers\7501064aea693a720707f5f18f4d205c.png" />
+    <Content Include="Assets\covers\757cf77e7ba8bea4e955b6e41ad0cf4e.png" />
+    <Content Include="Assets\covers\759e05e984f0a7fdae5b900afdbb66b0.png" />
+    <Content Include="Assets\covers\77181d366674321837026210450fe385.png" />
+    <Content Include="Assets\covers\78ce044488be6daefe3a690e1772a546.png" />
+    <Content Include="Assets\covers\7a21d2a99ca9a2abe04db5efc8219510.png" />
+    <Content Include="Assets\covers\7ac405a519b3abb98158bdca8b7788cf.png" />
+    <Content Include="Assets\covers\7acd11d6cf9e0a3e5b7ccf51e8f52339.png" />
+    <Content Include="Assets\covers\7aee2c6789cfc248db2060083df5baa0.png" />
+    <Content Include="Assets\covers\7af7f1fd229b17be004add64b3177464.png" />
+    <Content Include="Assets\covers\7bd306570d311d3c7dd31a2ca7dcb10b.png" />
+    <Content Include="Assets\covers\7be94ca5622a471e77195a2b709dbf30.png" />
+    <Content Include="Assets\covers\7c3b6ec71556ad230c360a36a9bde4a3.png" />
+    <Content Include="Assets\covers\7caeca3209451f20ffe2dd7c8b3ac625.png" />
+    <Content Include="Assets\covers\7cb9f17d3dcf3112d12da4c4c1c31b85.png" />
+    <Content Include="Assets\covers\7cd52948100a52128c60e5dd896e2729.png" />
+    <Content Include="Assets\covers\7d0ff0e473d344b870ebd1fee086ac6f.png" />
+    <Content Include="Assets\covers\7d612fa95701748b50869d84824d8d03.png" />
+    <Content Include="Assets\covers\7e2b4c437c1f9f929251b493e2224584.png" />
+    <Content Include="Assets\covers\7ed7eed86e97135ebf7605f21f363271.png" />
+    <Content Include="Assets\covers\7f1bbd0626981ec5e152853d86d9d94b.png" />
+    <Content Include="Assets\covers\7f99ee0d0657b29303dab24f4388a9f3.png" />
+    <Content Include="Assets\covers\80657e48ea840c61f513c112753f8e56.png" />
+    <Content Include="Assets\covers\807464f2936cbd9576a022ad7e88338e.png" />
+    <Content Include="Assets\covers\80ceccd87a568320f643b3e1319be252.png" />
+    <Content Include="Assets\covers\81c79515fe4e0f0a1fd1fc991e6827dc.png" />
+    <Content Include="Assets\covers\82e77f8bed03b4173512f00a3b7dcb5d.png" />
+    <Content Include="Assets\covers\82e9a01887cc15fb136f6fd1993b3e37.png" />
+    <Content Include="Assets\covers\839e586587960f0277a3a765cb143b2b.png" />
+    <Content Include="Assets\covers\849bbbd8ae23f3ef10fd89d36021cfe4.png" />
+    <Content Include="Assets\covers\851444292416c76fbfdb6c82ec7e526e.png" />
+    <Content Include="Assets\covers\8517900875675e83ef076e4bf3b0389a.png" />
+    <Content Include="Assets\covers\852eef6968f99ef2c73dacb615b3fdc5.png" />
+    <Content Include="Assets\covers\86907ca633bb83e72b1b36ce577d13d6.png" />
+    <Content Include="Assets\covers\87d47beb8a08b3799b0b7cc0ec8b7c5a.png" />
+    <Content Include="Assets\covers\88d2891eadcd5cf0f32043ae23fbc212.png" />
+    <Content Include="Assets\covers\88ec77cfeb80921feee8cc271be8f84f.png" />
+    <Content Include="Assets\covers\8913eff92aeee5afa87895218654fc66.png" />
+    <Content Include="Assets\covers\8965bc3ef1c7d5203597eb150b64d38f.png" />
+    <Content Include="Assets\covers\8a17488fa63c89025a724ee5953f78f3.png" />
+    <Content Include="Assets\covers\8af57cd1c4b5b72b2565f79ec986d4a7.png" />
+    <Content Include="Assets\covers\8bd429798b39a732715f5629df66ba22.png" />
+    <Content Include="Assets\covers\8bd7dd1bb17e74ff01fd4f4c60bc9d4b.png" />
+    <Content Include="Assets\covers\8be5983fdeed51c43a67e0631548e5fe.png" />
+    <Content Include="Assets\covers\8d5649abfa5ba01f6c525cc3b7f54fae.png" />
+    <Content Include="Assets\covers\8e7a78b540c9a4295118e9879741fe06.png" />
+    <Content Include="Assets\covers\8eaae720431d4a490bf7c69b634524c1.png" />
+    <Content Include="Assets\covers\8fd35b145a7dfcd6bcf581395515fec4.png" />
+    <Content Include="Assets\covers\900bf60abdc635130c4bd417ede99e1f.png" />
+    <Content Include="Assets\covers\908ae887ab3620fb0b03569cbe96eeac.png" />
+    <Content Include="Assets\covers\90ab09defc9090a24cc36b76cbe2e3be.png" />
+    <Content Include="Assets\covers\9168ce0e6aab92e3144d51efc877de7c.png" />
+    <Content Include="Assets\covers\925acb2b0911b06a0dca3e8b261ecad8.png" />
+    <Content Include="Assets\covers\927d926a9c45eda386fdb109d7d36b3d.png" />
+    <Content Include="Assets\covers\93928bba3dcf742d1aacedd893471be2.png" />
+    <Content Include="Assets\covers\939dbc89f82302bae005043ecbf0edfc.png" />
+    <Content Include="Assets\covers\948dffafd3d74253298624366ab2ccc1.png" />
+    <Content Include="Assets\covers\95681ef18296164b989e1ac637b3a0db.png" />
+    <Content Include="Assets\covers\95d492f43a1733e157475484d4cf4e2a.png" />
+    <Content Include="Assets\covers\95da0800cfd24d2f1801eed6a2cb3d74.png" />
+    <Content Include="Assets\covers\966b60a84d68e7b11e848b4810ef2aab.png" />
+    <Content Include="Assets\covers\977ea82d2991319a0840cb60be89c8a3.png" />
+    <Content Include="Assets\covers\978d6a91504faac2802d242ba9e43bf3.png" />
+    <Content Include="Assets\covers\97d5c9c9658fef6df32afa0ec5392c57.png" />
+    <Content Include="Assets\covers\9815026d5d102da5caa54107fe19f164.png" />
+    <Content Include="Assets\covers\982406a66e1e47ff7f9fc95a99120b70.png" />
+    <Content Include="Assets\covers\98616d8d480319e5b7a11231b55f38b9.png" />
+    <Content Include="Assets\covers\991bca34d4e3ba6d7ccdd822a0c5fff6.png" />
+    <Content Include="Assets\covers\99a89ecac7123ce43f8e59d05dfa2428.png" />
+    <Content Include="Assets\covers\99ef558464ee0ffac0ed07d97ff5fc7a.png" />
+    <Content Include="Assets\covers\9b355f4b82c7ead56a193486f3d60470.png" />
+    <Content Include="Assets\covers\9c806293f6bfc91b99be080076d24312.png" />
+    <Content Include="Assets\covers\9cee76c692755445230607aab8ed3853.png" />
+    <Content Include="Assets\covers\9d11891acb99f2df289e5c371c82cd61.png" />
+    <Content Include="Assets\covers\9efafbb7fd8c2a4fc62b057907c79708.png" />
+    <Content Include="Assets\covers\a092051929b3e0fd5a4622d6cab568ab.png" />
+    <Content Include="Assets\covers\a1394f02d96435029198be3b4096817d.png" />
+    <Content Include="Assets\covers\a1b489307b5a5a82dd5c1e18c33dafb7.png" />
+    <Content Include="Assets\covers\a28045ccebfc364c1be8efba59de01a0.png" />
+    <Content Include="Assets\covers\a41be30dc43f8bee85ea7d2af835ae0e.png" />
+    <Content Include="Assets\covers\a4545e68abbd320bc896d7920e9226e1.png" />
+    <Content Include="Assets\covers\a45d33a3258ed635657b3e78194c11a2.png" />
+    <Content Include="Assets\covers\a54424f6377c3790978a08491240a741.png" />
+    <Content Include="Assets\covers\a680faef43d660c8abfde7e4ca8a160e.png" />
+    <Content Include="Assets\covers\a69e72a7a544afbe20c5c03997d8a31a.png" />
+    <Content Include="Assets\covers\a71de48d72d5a10810ebc8918e1a8f44.png" />
+    <Content Include="Assets\covers\a741dcb10c3e0d940b16379a9b7d2dc5.png" />
+    <Content Include="Assets\covers\a76f7b5f5806c94cdf3590862edd7f37.png" />
+    <Content Include="Assets\covers\a811d2ac556c2c72b8e5b1f2ae2152a4.png" />
+    <Content Include="Assets\covers\a82b2af7436acd9f7c5cfd3bdf425933.png" />
+    <Content Include="Assets\covers\a891efd8d686068d339e0ece267bbf1e.png" />
+    <Content Include="Assets\covers\a8b686cd82dfdeb649f6b7573ec725f2.png" />
+    <Content Include="Assets\covers\a9a6c1515b8ee08e710142d5b53eef7a.png" />
+    <Content Include="Assets\covers\a9b4d79feb3d2cdeaf7cb65165db0ac0.png" />
+    <Content Include="Assets\covers\aa22ff137f94d4b6047d126110e3af9e.png" />
+    <Content Include="Assets\covers\aac217281bfdbb32771675bbbc7aca02.png" />
+    <Content Include="Assets\covers\aadc46d7ab0d5995d0f2287c21dd11ee.png" />
+    <Content Include="Assets\covers\ab141a0c1480f2a5c7733ab88fcd4fb1.png" />
+    <Content Include="Assets\covers\ac2c0652bee4dc2f53d51057aba576e0.png" />
+    <Content Include="Assets\covers\ac7e0b6bfe0443734b246c05bafc455c.png" />
+    <Content Include="Assets\covers\ad4d612a3557825957cc5abc3de13c89.png" />
+    <Content Include="Assets\covers\ad89e522901ee03aa86299f7454368e9.png" />
+    <Content Include="Assets\covers\ad9ef41aebfa6adb392fca622f34bbd1.png" />
+    <Content Include="Assets\covers\ad9f35f9b57123385d0ffdfcf31f031e.png" />
+    <Content Include="Assets\covers\adc9c48174040078197f7a462ff727e1.png" />
+    <Content Include="Assets\covers\aeca60036b25acb57c09d107f746f091.png" />
+    <Content Include="Assets\covers\af0deed385efb3f9e723faba37df923a.png" />
+    <Content Include="Assets\covers\af6d51560416bbaa7a62e6473eca0728.png" />
+    <Content Include="Assets\covers\af7e0bf7baf7ab860d4497bb22f47c57.png" />
+    <Content Include="Assets\covers\b156076b560d33d983191e12909e8787.png" />
+    <Content Include="Assets\covers\b15785c9a8cdcdccfd13d7b2feef6d04.png" />
+    <Content Include="Assets\covers\b18a2ffdbc4829951736bef9b42a9919.png" />
+    <Content Include="Assets\covers\b295cc28563bd62fd425b52bb94374a2.png" />
+    <Content Include="Assets\covers\b440f2845aa1fd483d6b9426ef571c84.png" />
+    <Content Include="Assets\covers\b461cf21e11f665251fccb235896cdba.png" />
+    <Content Include="Assets\covers\b5c3ad12acebb7917c646588e4410bdd.png" />
+    <Content Include="Assets\covers\b5e75795b58b5ef1cb5a8acde148fb75.png" />
+    <Content Include="Assets\covers\b62279df73d679d4730d0ab3012efacd.png" />
+    <Content Include="Assets\covers\b7f7b913d6f3b39635c7a5c1b4799b62.png" />
+    <Content Include="Assets\covers\b91005bf48e8dd05f67f4743e28a1722.png" />
+    <Content Include="Assets\covers\b95e0ef2dd6fafb2a0b5ab5e073fa449.png" />
+    <Content Include="Assets\covers\b96569f57cb023b9b64bdc5b1cf17017.png" />
+    <Content Include="Assets\covers\bb43c0e13567c4a7ef77351f7cd86c96.png" />
+    <Content Include="Assets\covers\bb93207e0445381649affe495d342ee8.png" />
+    <Content Include="Assets\covers\bc00471d8e3fc60ca2c99ab3bc39fdc4.png" />
+    <Content Include="Assets\covers\bc736b11dfd1dcda51387e61fb80aa15.png" />
+    <Content Include="Assets\covers\be8be7744f3d8636759d5805a2ef91b5.png" />
+    <Content Include="Assets\covers\bf634004ae0eaea06f7e10997740b615.png" />
+    <Content Include="Assets\covers\bf94c3f93d72f133f6ec0f520b913406.png" />
+    <Content Include="Assets\covers\bfdfbf1cf103e71ab7815f3cca25a62d.png" />
+    <Content Include="Assets\covers\c09cf00e9c89a00a1ca0fb90a846fa26.png" />
+    <Content Include="Assets\covers\c1c82b044d4c1269d3f050cfb5270890.png" />
+    <Content Include="Assets\covers\c1e1338e95c3d780d1232b2c14b79402.png" />
+    <Content Include="Assets\covers\c202a0017befa264ce1e80eaf65ffbc1.png" />
+    <Content Include="Assets\covers\c2c23a3494ae2a9ae2d41a77a2ea973e.png" />
+    <Content Include="Assets\covers\c2f3ad9252288743eb897f6bf9471b25.png" />
+    <Content Include="Assets\covers\c3560259f5fa0f9b6adc1092ce3d540c.png" />
+    <Content Include="Assets\covers\c37d242059fba996bfce709f67b89522.png" />
+    <Content Include="Assets\covers\c3ffb5bedf842c728d340e6e50319b9d.png" />
+    <Content Include="Assets\covers\c4756c5c9983f454311e071d1600a9ea.png" />
+    <Content Include="Assets\covers\c47dfd9ba89f789076718e131ed1e3c0.png" />
+    <Content Include="Assets\covers\c4a8276f00977b6adac9431d1a314236.png" />
+    <Content Include="Assets\covers\c4dca07d161ec1ece7b17e2d1a15e481.png" />
+    <Content Include="Assets\covers\c5d3f8a46f6f3dc9a0b34966380d8385.png" />
+    <Content Include="Assets\covers\c73feefc626766da5cdadc6b0b605adf.png" />
+    <Content Include="Assets\covers\c763a8b1c369586dc924d0377ea69058.png" />
+    <Content Include="Assets\covers\c84341ef4a423c6acb555dc4c7f9acde.png" />
+    <Content Include="Assets\covers\c8cbb65febb7b4355ddd6f0ebf64d527.png" />
+    <Content Include="Assets\covers\c94ec72e0d187ec410fd203adf86fbc5.png" />
+    <Content Include="Assets\covers\cb9a99b02d2228a8fbd8200ad2a37449.png" />
+    <Content Include="Assets\covers\cbae92ef92c5022b94c47d6ca99d2bc6.png" />
+    <Content Include="Assets\covers\cbdd190bda7e73665d99059f32954119.png" />
+    <Content Include="Assets\covers\cc75f5ec84746ca6ca1f9603fe4b1d78.png" />
+    <Content Include="Assets\covers\cc9f4a8bc7cec413844ac45061c48f41.png" />
+    <Content Include="Assets\covers\cd29e37223781134bac184719e76ca69.png" />
+    <Content Include="Assets\covers\cd5f0da30fb5cc9f7eee9ae1fc636d2a.png" />
+    <Content Include="Assets\covers\ce53aa6938b53ff7d72e9b894811075d.png" />
+    <Content Include="Assets\covers\ce5beed31858556266b82dd7e9cfea4d.png" />
+    <Content Include="Assets\covers\ce6dda438401ec21e3f67f85a236a4f7.png" />
+    <Content Include="Assets\covers\ceb6c38766ed4c4cd5fcc32dddbc8a3f.png" />
+    <Content Include="Assets\covers\d0c15c75602dfabdfc0cc17f964ae890.png" />
+    <Content Include="Assets\covers\d114afa289032728774f120cf1660373.png" />
+    <Content Include="Assets\covers\d1793cdc92415ee6270ece34f625a03f.png" />
+    <Content Include="Assets\covers\d1dcebf9d63a4d3c3cc478986c2d3347.png" />
+    <Content Include="Assets\covers\d1f6320c9454985707c847335fa1566f.png" />
+    <Content Include="Assets\covers\d275174880468b0abee329c3c1f3c876.png" />
+    <Content Include="Assets\covers\d291ee090e22ce6fc1afdd17bcd522ab.png" />
+    <Content Include="Assets\covers\d2c57675bee8e0184a6b2e8aa7148451.png" />
+    <Content Include="Assets\covers\d3501fbb0e3220f1722b3d038b0304e9.png" />
+    <Content Include="Assets\covers\d3b862ad8659afca57c4de1add5a9767.png" />
+    <Content Include="Assets\covers\d46922f661d9f5f359c23db9056412da.png" />
+    <Content Include="Assets\covers\d4da9ebf5bdd9a35128e113605e3029e.png" />
+    <Content Include="Assets\covers\d5664b4b4a4ca55f1d6bc91ead039581.png" />
+    <Content Include="Assets\covers\d605a956879be99e759c16482dd8e4fb.png" />
+    <Content Include="Assets\covers\d6458f5a858c829475ea3525606a5ef2.png" />
+    <Content Include="Assets\covers\d67983c14d5d4e1ffb094508e0ed569c.png" />
+    <Content Include="Assets\covers\d6c92cd9980064449615dbf5456f9cf4.png" />
+    <Content Include="Assets\covers\d70c2d149b259b3bc3fdf7bc6c823b8f.png" />
+    <Content Include="Assets\covers\d73cfaa83f7628f40bb6a34bcf341c7a.png" />
+    <Content Include="Assets\covers\d77cf35f363e01921887964e67257221.png" />
+    <Content Include="Assets\covers\d8bac0807bc845cf5501939c050f9abe.png" />
+    <Content Include="Assets\covers\d8ef1672d525f483295dda45e4aa7969.png" />
+    <Content Include="Assets\covers\d97eaa2875bb780a4703d743bb730cd6.png" />
+    <Content Include="Assets\covers\d9a10858b897a3a92a1b858303d656ca.png" />
+    <Content Include="Assets\covers\d9b69420a8566e0884f35aee3ebf2f53.png" />
+    <Content Include="Assets\covers\da4cea868b0c97b68562cbadacada448.png" />
+    <Content Include="Assets\covers\db19cca9e5b97df0fce7f1340986cd03.png" />
+    <Content Include="Assets\covers\db5c4cf36b8a814c707774a17d32c031.png" />
+    <Content Include="Assets\covers\dcb27f357bf5e0f59aa03f25c1143820.png" />
+    <Content Include="Assets\covers\dd042ee1b4b61e7c24a56a9a8b0b2c5e.png" />
+    <Content Include="Assets\covers\dd6130e279bb96b3fd8ffdcec641b593.png" />
+    <Content Include="Assets\covers\de800bed314c04b094369801850d26f2.png" />
+    <Content Include="Assets\covers\df8777e5db1ef0ea8ac2d3c95baa5405.png" />
+    <Content Include="Assets\covers\e03effe5e66f7aa4867ae5b0135a5cc6.png" />
+    <Content Include="Assets\covers\e0e6a8169b53516f5bf6a67ca6c7016c.png" />
+    <Content Include="Assets\covers\e10edd619cf5e11e58b58770fe64dfda.png" />
+    <Content Include="Assets\covers\e158d46471e5e6146e264601befe3bc9.png" />
+    <Content Include="Assets\covers\e1a55040f0249b47b31115a02c5d19f8.png" />
+    <Content Include="Assets\covers\e204f0ca85baa91b33fe68e8948c1977.png" />
+    <Content Include="Assets\covers\e207a6822ae29f3f225582ff191eac32.png" />
+    <Content Include="Assets\covers\e33ad65d36d28d8da1e2a4fb6f550f28.png" />
+    <Content Include="Assets\covers\e39f2e9f37d5df71d504901d67b978ad.png" />
+    <Content Include="Assets\covers\e3b37613dfd5abe430d9bcee16a0274d.png" />
+    <Content Include="Assets\covers\e3c30b74a2c1227e31635bcac2ccff7e.png" />
+    <Content Include="Assets\covers\e4d14ffd2553c79bb29b0879b96954a2.png" />
+    <Content Include="Assets\covers\e53bf6eb325567c5032d8a1b8d5a2908.png" />
+    <Content Include="Assets\covers\e561cebff99eb2ca95837175484e94a7.png" />
+    <Content Include="Assets\covers\e581458fea2331e6e38af7b1c10edb4e.png" />
+    <Content Include="Assets\covers\e5b04ec1b9dff37ebfe68c294f9a2cb2.png" />
+    <Content Include="Assets\covers\e69af88e057a68e66bf3190dd2bf7dc9.png" />
+    <Content Include="Assets\covers\e6dc26d4e542da194aa3ad5533d0e388.png" />
+    <Content Include="Assets\covers\e769cd4012d6d11dc6405dca99f01da4.png" />
+    <Content Include="Assets\covers\e8eed1198fa44b040e8ac753292ba30c.png" />
+    <Content Include="Assets\covers\e9412cacc2f8dee9d85fd2b804c3b724.png" />
+    <Content Include="Assets\covers\e9d0e5ba91dfe1f1419ba2454c55b214.png" />
+    <Content Include="Assets\covers\ea108d10decea00672fd8a9a3554d10c.png" />
+    <Content Include="Assets\covers\ea31437fd0cfddc79b8ca985f96c61c4.png" />
+    <Content Include="Assets\covers\ea4564851bae771522bf5241cd3070b8.png" />
+    <Content Include="Assets\covers\eab81be5f8c8ed888fbf5e67ffc2d335.png" />
+    <Content Include="Assets\covers\ec0570744fcada83fa1049c2a7cb5cc0.png" />
+    <Content Include="Assets\covers\eec811cbfcc0845740eb3faac5f6b83e.png" />
+    <Content Include="Assets\covers\eee637ce9c3b3ede7a3463ff84689f8e.png" />
+    <Content Include="Assets\covers\efb842469bc96cae5bd848eed4bbab80.png" />
+    <Content Include="Assets\covers\f006ea13f36158b4b4d3d9c329ed71da.png" />
+    <Content Include="Assets\covers\f1cf63dc3a0a73e6f75b0988fae417c2.png" />
+    <Content Include="Assets\covers\f20daaba00f230b452324bcc5c8ed241.png" />
+    <Content Include="Assets\covers\f32019ae4d18d6fd4e09630a6252a45a.png" />
+    <Content Include="Assets\covers\f3cfbab7f3ae288b99c2394aa43adba1.png" />
+    <Content Include="Assets\covers\f3e60204e9f1e9b005e3ed08cf1c3a1a.png" />
+    <Content Include="Assets\covers\f4ec5f68d5fa6d4833badd75181ae4a7.png" />
+    <Content Include="Assets\covers\f516b891bdf1a664d6c3b07ebbb4659a.png" />
+    <Content Include="Assets\covers\f52fdc4272a729fd769041005eb9e729.png" />
+    <Content Include="Assets\covers\f58008f8fe8efa2afc360ac44d9d9bdb.png" />
+    <Content Include="Assets\covers\f5c9963fb6f071689067a4fa57e10b95.png" />
+    <Content Include="Assets\covers\f6eeab30305fcb60a58f393ea859d0f8.png" />
+    <Content Include="Assets\covers\f74af7ed169ecf2eea8862f88556198c.png" />
+    <Content Include="Assets\covers\f769ad4c061c945df39090f4dd0790dd.png" />
+    <Content Include="Assets\covers\f7951aa0b6cf960910c31aaf57440169.png" />
+    <Content Include="Assets\covers\f800d23f196cb46258dc02e3626b9938.png" />
+    <Content Include="Assets\covers\f9fcd094edb1068ceda7974f410f3797.png" />
+    <Content Include="Assets\covers\fa75437eebdb415206b26e9741ca9e20.png" />
+    <Content Include="Assets\covers\fa7aeb53a87b583a22d3c5567dfbca3d.png" />
+    <Content Include="Assets\covers\fabf0b558738c667b9c3e5bf517b16a3.png" />
+    <Content Include="Assets\covers\fae376a258ff8eca091f173138017e32.png" />
+    <Content Include="Assets\covers\fb277cf1c4e4679d60734f6c65a38cf2.png" />
+    <Content Include="Assets\covers\fc222349ca223df6b3e59d03bc77f8c5.png" />
+    <Content Include="Assets\covers\fc933d9cba8e2a54a75a657a4724dc8b.png" />
+    <Content Include="Assets\covers\fd4f4e18200c213c558fe6e1490919d1.png" />
+    <Content Include="Assets\covers\fd94d713e5b3b9b7d9f21b9964e2dec8.png" />
+    <Content Include="Assets\covers\fdfa06aa36e036756d2b2ca47846efa2.png" />
+    <Content Include="DataModel\SampleData.json" />
+    <Content Include="DataModel\SampleData_org.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\LightGray.png" />
+    <Content Include="Assets\MediumGray.png" />
+    <Content Include="Assets\DarkGray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="GroupedItemsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GroupDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ItemDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
