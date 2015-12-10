@@ -81,7 +81,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Slider for the custom timeline bar for the MediaElement -->
-                <Slider Name="timelineSlider" />
+                <Slider Name="timelineSlider" ValueChanged="TimelineSlider_ValueChanged" PointerReleased="TimelineSlider_PointerReleased" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
 
@@ -95,9 +95,9 @@
 
                     <!-- Center of Appbar -->
                     <StackPanel x:Name="stackPanelAppbarCenter" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <AppBarButton x:Uid="appBarButtonPrevious" Icon="Previous"  />
+                        <AppBarButton x:Uid="appBarButtonPrevious" Icon="Previous" Click="AppBarButton_Previous"  />
                         <AppBarButton x:Name="appBarButtonPlay" Icon="Play" Click="appBarButtonPlay_Click" />
-                        <AppBarButton x:Uid="appBarButtonNext" Icon="Next" />
+                        <AppBarButton x:Uid="appBarButtonNext" Icon="Next" Click="AppBarButton_Next"/>
                     </StackPanel>
 
                 </StackPanel>

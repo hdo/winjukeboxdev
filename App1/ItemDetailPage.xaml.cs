@@ -30,6 +30,11 @@ namespace App1
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         SystemMediaTransportControls systemMediaControls = null;
         MediaElement localMediaElement = null;
+        List<String> localPlaylist = new List<String>();
+        int localCurrentTrack = -1;
+        // Used with the custom progress slider.
+        private bool sliderPressed = false;
+
 
         /// <summary>
         /// NavigationHelper wird auf jeder Seite zur Unterstützung bei der Navigation verwendet und 
@@ -110,11 +115,36 @@ namespace App1
                 System.Diagnostics.Debug.WriteLine("sdCard ... " + sdCard.Path);
 
 
-                //string pathPrefix = "D:\\private\\kinder\\";
+
                 string pathPrefix = sdCard.Path + "jukebox\\";
-                //string fullPath = pathPrefix + sdi.Tracks[0];
                 string fullPath = pathPrefix + sdi.Dirname.Substring(2) + '\\' + sdi.Tracks[0];
                 System.Diagnostics.Debug.WriteLine("Loading ... " + fullPath);
+
+                this.localPlaylist.Clear();
+                this.localCurrentTrack = -1;
+                foreach(String currentTrack in sdi.Tracks)
+                {
+                    String fPath = pathPrefix + sdi.Dirname.Substring(2) + '\\' + currentTrack;
+                    System.Diagnostics.Debug.WriteLine("adding ... " + fPath);
+                    this.localPlaylist.Add(fPath);
+                }
+
+
+                if (this.systemMediaControls == null)
+                {
+                    systemMediaControls = SystemMediaTransportControls.GetForCurrentView();
+                    systemMediaControls.ButtonPressed += SystemMediaControls_ButtonPressed;
+                    systemMediaControls.IsPlayEnabled = true;
+                    systemMediaControls.IsPauseEnabled = true;
+                    systemMediaControls.IsStopEnabled = true;
+                    this.localMediaElement.CurrentStateChanged += GlobalMedia_CurrentStateChanged;
+                    this.localMediaElement.MediaEnded += MediaElement_MediaEnded;
+                    this.localMediaElement.MediaOpened += MediaElement_MediaOpened;
+
+                }
+
+                playNextTrack();
+                /*
 
                 StorageFile sFile = null;
                 try
@@ -130,16 +160,6 @@ namespace App1
                 if (sFile != null)
                 {
 
-                    if (this.systemMediaControls == null)
-                    {
-                        systemMediaControls = SystemMediaTransportControls.GetForCurrentView();
-                        systemMediaControls.ButtonPressed += SystemMediaControls_ButtonPressed;
-                        systemMediaControls.IsPlayEnabled = true;
-                        systemMediaControls.IsPauseEnabled = true;
-                        systemMediaControls.IsStopEnabled = true;
-                        this.localMediaElement.CurrentStateChanged += GlobalMedia_CurrentStateChanged;
-                        
-                    }
 
                     System.Diagnostics.Debug.WriteLine("Successfull: " + fullPath);
                     IRandomAccessStream stream = await sFile.OpenAsync(FileAccessMode.Read);
@@ -151,6 +171,7 @@ namespace App1
                 {
                     System.Diagnostics.Debug.WriteLine("Failed: " + fullPath);
                 }
+                */
             }
 
         }
@@ -209,6 +230,14 @@ namespace App1
                 case SystemMediaTransportControlsButton.Pause:
                     System.Diagnostics.Debug.WriteLine("pause");
                     PauseMedia();
+                    break;
+                case SystemMediaTransportControlsButton.Previous:
+                    System.Diagnostics.Debug.WriteLine("previous");
+                    playPreviousTrack();
+                    break;
+                case SystemMediaTransportControlsButton.Next:
+                    System.Diagnostics.Debug.WriteLine("next");
+                    playNextTrack();
                     break;
                 default:
                     break;
@@ -278,6 +307,133 @@ namespace App1
                     this.localMediaElement.Play();
                 }
             }
+        }
+
+        private async void playNextTrack()
+        {
+            System.Diagnostics.Debug.WriteLine("called playNextTrack");
+            if (this.localCurrentTrack < this.localPlaylist.Count-1)
+            {
+                this.localCurrentTrack++;
+
+                StorageFile sFile = null;
+                String fullPath = this.localPlaylist[this.localCurrentTrack];
+                try
+                {
+                    System.Diagnostics.Debug.WriteLine("Loading ... " + fullPath);
+                    sFile = await StorageFile.GetFileFromPathAsync(fullPath);
+                    if (sFile != null)
+                    {
+                        timelineSlider.Value = 0;
+                        IRandomAccessStream stream = await sFile.OpenAsync(FileAccessMode.Read);
+                        this.localMediaElement.SetSource(stream, sFile.ContentType);
+                        this.localMediaElement.Play();
+                    }
+                }
+                catch (Exception e2)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error loading ... " + fullPath);
+                }
+            }
+        }
+
+        private async void playPreviousTrack()
+        {
+            System.Diagnostics.Debug.WriteLine("called playPreviousTrack");
+            if (this.localCurrentTrack > 0)
+            {
+                this.localCurrentTrack--;
+
+                StorageFile sFile = null;
+                String fullPath = this.localPlaylist[this.localCurrentTrack];
+                try
+                {
+                    System.Diagnostics.Debug.WriteLine("Loading ... " + fullPath);
+                    sFile = await StorageFile.GetFileFromPathAsync(fullPath);
+                    if (sFile != null)
+                    {
+                        timelineSlider.Value = 0;
+                        IRandomAccessStream stream = await sFile.OpenAsync(FileAccessMode.Read);
+                        this.localMediaElement.SetSource(stream, sFile.ContentType);
+                        this.localMediaElement.Play();
+                    }
+                }
+                catch (Exception e2)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error loading ... " + fullPath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handler for the MediaEnded event of the MediaElement.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("media ended!");
+            playNextTrack();
+        }
+
+
+        private void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            // Initiazlie custom timeline slider.
+            System.Diagnostics.Debug.WriteLine("media length: " + this.localMediaElement.NaturalDuration.TimeSpan.TotalSeconds);
+
+            timelineSlider.Maximum = this.localMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+        }
+
+        /// <summary>
+        /// The timeline position Slider ValueChanged event handler. 
+        /// When the slider value is changed, update the MediaElement.Position.
+        /// </summary>
+        void TimelineSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+            if (!sliderPressed)
+            {
+                System.Diagnostics.Debug.WriteLine("slider value changed: " + e.NewValue);
+                localMediaElement.Position = TimeSpan.FromSeconds(e.NewValue);
+            }
+        }
+
+        /// <summary>
+        /// The PointerEntered event handler for the timeline Slider.
+        /// Sets the sliderpressed flag so the timer does not continue to update the Slider while the user
+        /// is interacting with it.
+        /// </summary>
+        void TimelineSlider_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("slider entered");
+            sliderPressed = true;
+        }
+
+        void TimelineSlider_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("slider released");
+        }
+
+        /// <summary>
+        /// The PointerCaptureLost event handler for the timeline position Slider.
+        /// Sets the MediaElement.Position to Slider.Value and unsets the sliderpressed flag 
+        /// which enables the timer to continue to update the slider position.
+        /// </summary>
+        void TimelineSlider_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("slider lost");
+            sliderPressed = false;
+        }
+
+        private void AppBarButton_Previous(object sender, RoutedEventArgs e)
+        {
+            playPreviousTrack();
+        }
+
+        private void AppBarButton_Next(object sender, RoutedEventArgs e)
+        {
+            playNextTrack();
         }
     }
 }
