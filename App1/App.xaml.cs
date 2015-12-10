@@ -38,18 +38,6 @@ namespace App1
         }
 
 
-        public static MediaElement GlobalMediaElement
-        {
-            get { return Current.Resources["GlobalMedia"] as MediaElement; }
-        }
-
-
-        void GlobalMedia_CurrentStateChanged(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("called currentStateChanged from APP");
-            //updateSystemMediaControlsStatus();
-        }
-
 
 
 
@@ -100,11 +88,14 @@ namespace App1
                     }
                 }
 
+                rootFrame.Style = Resources["RootFrameStyle"] as Style;
                 // Den Frame im aktuellen Fenster platzieren
                 Window.Current.Content = rootFrame;
             }
             if (rootFrame.Content == null)
             {
+                rootFrame.Style = Resources["RootFrameStyle"] as Style;
+
                 // Wenn der Navigationsstapel nicht wiederhergestellt wird, zur ersten Seite navigieren
                 // und die neue Seite konfigurieren, indem die erforderlichen Informationen als Navigationsparameter
                 // übergeben werden

@@ -96,7 +96,7 @@
                     <!-- Center of Appbar -->
                     <StackPanel x:Name="stackPanelAppbarCenter" Orientation="Horizontal" HorizontalAlignment="Center">
                         <AppBarButton x:Uid="appBarButtonPrevious" Icon="Previous"  />
-                        <AppBarButton x:Name="appBarButtonPlay" Icon="Play" Click="appBarButtonPlay_Click"/>
+                        <AppBarButton x:Name="appBarButtonPlay" Icon="Play" Click="appBarButtonPlay_Click" />
                         <AppBarButton x:Uid="appBarButtonNext" Icon="Next" />
                     </StackPanel>
 

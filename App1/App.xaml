@@ -12,11 +12,20 @@
         <x:String x:Key="AppName">JukeboxDev</x:String>
 
         <!--<MediaElement x:Key="GlobalMedia" Source=" " Visibility="Collapsed"  AutoPlay="False" />-->
-        <MediaElement x:Name="GlobalMedia" Height="50" Width="1000" 
-                          AreTransportControlsEnabled="False" 
-                          AudioCategory="BackgroundCapableMedia" 
-                         
-                          />
+
+
+        <Style  x:Key="RootFrameStyle" TargetType="Frame">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Frame">
+                        <Grid>
+                            <MediaElement x:Name="MediaPlayer" AudioCategory="BackgroundCapableMedia" AutoPlay="True"  />
+                            <ContentPresenter />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
 
     </Application.Resources>

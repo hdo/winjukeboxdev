@@ -29,6 +29,7 @@ namespace App1
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         SystemMediaTransportControls systemMediaControls = null;
+        MediaElement localMediaElement = null;
 
         /// <summary>
         /// NavigationHelper wird auf jeder Seite zur Unterstützung bei der Navigation verwendet und 
@@ -67,6 +68,15 @@ namespace App1
         /// beibehalten wurde.  Der Zustand ist beim ersten Aufrufen einer Seite NULL.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+
+            DependencyObject rootGrid = VisualTreeHelper.GetChild(Window.Current.Content, 0);
+            this.localMediaElement = (MediaElement)VisualTreeHelper.GetChild(rootGrid, 0);
+            if (this.localMediaElement != null)
+            {
+                System.Diagnostics.Debug.WriteLine("media element found: " + this.localMediaElement.Name);
+            }
+
+
             // TODO: Ein geeignetes Datenmodell für die domänenspezifische Anforderung erstellen, um die Beispieldaten auszutauschen
             var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
             this.DefaultViewModel["Item"] = item;
@@ -127,25 +137,15 @@ namespace App1
                         systemMediaControls.IsPlayEnabled = true;
                         systemMediaControls.IsPauseEnabled = true;
                         systemMediaControls.IsStopEnabled = true;
-                        //audioMediaElement.CurrentStateChanged += MediaElement_CurrentStateChanged;
+                        this.localMediaElement.CurrentStateChanged += GlobalMedia_CurrentStateChanged;
                         
                     }
-
-
 
                     System.Diagnostics.Debug.WriteLine("Successfull: " + fullPath);
                     IRandomAccessStream stream = await sFile.OpenAsync(FileAccessMode.Read);
 
-                    // not working
-                    // see https://social.msdn.microsoft.com/Forums/en-US/f5b9cdba-5521-467d-b838-8420afc68e7f/media-events-not-firing-if-instantiated-from-function?forum=winappswithnativecode
-                    // also https://zoomicon.wordpress.com/2014/11/18/gotcha-mediaelement-must-be-in-visual-tree-for-mediaopened-mediaended-to-be-fired/
-                    App.GlobalMediaElement.CurrentStateChanged += GlobalMedia_CurrentStateChanged; // not working
-
-
-                    App.GlobalMediaElement.SetSource(stream, sFile.ContentType);
-                    App.GlobalMediaElement.Play();
-                    //this.audioMediaElement.SetSource(stream, sFile.ContentType);
-                    //this.audioMediaElement.Play();
+                    this.localMediaElement.SetSource(stream, sFile.ContentType);
+                    this.localMediaElement.Play();
                 }
                 else
                 {
@@ -163,13 +163,13 @@ namespace App1
         }
 
 
+        
         // currenly does not work
         void updateSystemMediaControlsStatus()
         {
-            if (this.systemMediaControls != null)
+            if (this.systemMediaControls != null && this.localMediaElement != null)
             {
-                //switch (audioMediaElement.CurrentState)
-                switch (App.GlobalMediaElement.CurrentState)
+                switch (this.localMediaElement.CurrentState)
                 {
                     default:
                     case MediaElementState.Closed:
@@ -213,18 +213,14 @@ namespace App1
                 default:
                     break;
             }
-            //updateSystemMediaControlsStatus();
+            updateSystemMediaControlsStatus();
         }
 
         async void MediaElement_PlayMedia()
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-
-                //audioMediaElement.Play();
-                App.GlobalMediaElement.Play();
-                //this.updateSystemMediaControlsStatus();
-                this.systemMediaControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                this.localMediaElement.Play();
            
             });
         }
@@ -233,10 +229,7 @@ namespace App1
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                //audioMediaElement.Pause();
-                App.GlobalMediaElement.Pause();
-                //this.updateSystemMediaControlsStatus();
-                this.systemMediaControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+                this.localMediaElement.Pause();
             });
         }
 
@@ -270,17 +263,20 @@ namespace App1
 
         }
 
+
         private void appBarButtonPlay_Click(object sender, RoutedEventArgs e)
         {
-            if (App.GlobalMediaElement.CurrentState == MediaElementState.Playing)
+            if (this.localMediaElement != null)
             {
-                App.GlobalMediaElement.Pause();
+                if (this.localMediaElement.CurrentState == MediaElementState.Playing)
+                {
+                    this.localMediaElement.Pause();
 
-            } 
-            else if (App.GlobalMediaElement.CurrentState == MediaElementState.Paused)
-            {
-                App.GlobalMediaElement.Play();
-
+                }
+                else if (this.localMediaElement.CurrentState == MediaElementState.Paused)
+                {
+                    this.localMediaElement.Play();
+                }
             }
         }
     }
